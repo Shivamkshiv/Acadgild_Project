@@ -1,6 +1,7 @@
 package mr_auspicious.shivam_kr_shiv.com.imdb;
 
 
+
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
@@ -28,10 +29,10 @@ import java.util.ArrayList;
 
 
 
-public class MainActivity extends AppCompatActivity {
+public class Upcoming_Movies extends AppCompatActivity {
 
 
-    String url = "http://api.themoviedb.org/3/movie/now_playing?api_key=8496be0b2149805afa458ab8ec27560c";
+    String url = "http://api.themoviedb.org/3/movie/upcoming?api_key=8496be0b2149805afa458ab8ec27560c";
 
     ListView listView;
     DetailAdapter detailAdapter;
@@ -49,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent=new Intent(MainActivity.this,FullDetails.class);
+                Intent intent=new Intent(Upcoming_Movies.this,FullDetails.class);
                 intent.putExtra("ID",info.get(i).getID());
                 startActivity(intent);
             }
@@ -110,6 +111,7 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
 
+
             JSONObject object = null;
             try {
                 object = new JSONObject(s);
@@ -126,23 +128,21 @@ public class MainActivity extends AppCompatActivity {
                     String image = "http://image.tmdb.org/t/p/w500" + properties.getString("poster_path");
                     String id = properties.getString("id");
 
+
+
                     Detail detail = new Detail(title, date, average, vote_Count,image,id);
                     info.add(detail);
 
-                 }
+
+
+                }
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
-
-
-            detailAdapter = new DetailAdapter(MainActivity.this, info);
+            detailAdapter = new DetailAdapter(Upcoming_Movies.this, info);
             listView.setAdapter(detailAdapter);
-
-
-
-
 
 
         }
@@ -158,6 +158,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -168,22 +169,19 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
                 return true;
             case R.id.option2:
-                Intent intent1 = new Intent(this,Upcoming_Movies.class);
-                startActivity(intent1);
+                //DO NOTHING
                 return true;
             case R.id.option3:
-                //DO NOTHING
+                Intent intent1 = new Intent(this,MainActivity.class);
+                startActivity(intent1);
                 return true;
             case R.id.option4:
                 Intent intent2 = new Intent(this,Top_Rated.class);
                 startActivity(intent2);
                 return true;
 
-
             case R.id.option6:
-                Intent intent4=new Intent(MainActivity.this,Favorite.class);
-                intent4.putExtra("id","1");
-                startActivity(intent4);
+                //do nothing
                 return true;
 
             case R.id.option7:
@@ -191,7 +189,7 @@ public class MainActivity extends AppCompatActivity {
                 return true;
 
             case R.id.option8:
-                DetailAdapter detailAdapter = new DetailAdapter(MainActivity.this,info);
+                DetailAdapter detailAdapter = new DetailAdapter(Upcoming_Movies.this,info);
                 listView.setAdapter(detailAdapter);
                 return true;
 

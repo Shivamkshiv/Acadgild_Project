@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">IMDB</string>
+    <string name="option1">Most Popular</string>
+    <string name="option2">Upcoming Movies</string>
+    <string name="option3">Now Playing</string>
+    <string name="option4">Top Rated</string>
+    <string name="option5">Latest Movies</string>
+    <string name="option6">My Favorites</string>
+    <string name="option7">My Watchlist</string>
+    <string name="option8">Refresh</string>
+    <string name="ov">Overview :</string>
 </resources>
